@@ -1,3 +1,4 @@
+import os
 from praw import Reddit
 from random import randrange
 from flask import Flask
@@ -37,6 +38,12 @@ def track_click():
         return val + 1
 
 
+def setup_click():
+    if not os.path.isfile('clicks.dat'):
+        with open('clicks.dat', 'w') as f:
+            f.write(str(0))
+
+
 def make_desc():
     return load_raw_desc().format(track_click())
 
@@ -54,7 +61,7 @@ def move_snitch():
 
 app = Flask(__name__)
 config = get_config_dict()
-track_click()
+setup_click()
 
 @app.route('/snitch')
 def snitch():
