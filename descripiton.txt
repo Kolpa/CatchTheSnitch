@@ -1,0 +1,2 @@
+[](http://www.kolpao.tk/snitch)
+The snitch has been caught {0} times.
